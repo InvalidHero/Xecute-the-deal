@@ -1,0 +1,74 @@
+Week 1:
+Formed a team for the project and discussed pros and cons of each project.
+Settled on Investment Simulator since everyone was interested in it, and we had some cool ideas for implemention/extensions.
+Did research on stock trading, and the features that existing applications had.
+
+Week 2:
+Began creating wireframes on Figma for base features
+Still discussing possible extension features and 'novel' ideas. Ended up deciding on a 'gamification' route.
+Held meetings to plan this out. The group will also be giving written daily 'quick' updates.
+Continuing to research how the stock market works, and features investors want.
+    e.g. pre/after market trading, limit orders, brokerage fees, short selling etc.
+
+Week 3:
+Finished wireframes with Justin, 20 in total.
+Also worked with Justin to finish all storyboards for the proposal (11 in total).
+Reviewed all user stories and acceptance criterias with Ian. Some modifications and clarifications were made regarding limit orders
+and after market trading
+Work in Ian's garage with team to finalise propasal and submit.
+    Issue close to submission: images in word became badly compressed when converting to PDF.
+    'Solved' using Adobe converter, and also updating all images to more suitable resolution.
+Will be working on setting up an environment and begin implementing features for Sprint 1.
+
+Week 4:
+Busy week unfortunately and did not get much done.
+Curated a list of 30 ASX stocks for our application
+    Attempted to choose stocks that new investors might recognise
+    Attempted to have a balance between industry sectors, price points and ETFs
+
+Week 5:
+Curated similar lists for 30 NYSE stocks, and 10 LSE stocks with similar industry distributions to the ASX ones.
+Spent a lot of time understanding the architecture, including time spent learning fastapi and crud.
+First demo was this week. Held meetings to prepare for this and finalise the sprint.
+Held retrospective meeting for the first demo and contributed to that report.
+
+Week 6:
+Implemented market trading APIs. This is buys, sells, short sells, and covers at current market price
+with commission applied to all trades.
+Also implemented APIs for the portfolio page including all of the necessary statistics
+users expect from a trading app.
+
+Week 7:
+Implemented APIs for pending orders and transaction histories.
+Worked with Justin to improve efficiency of existing APIs and better integrate with front end
+Implemented APIs for limit trading. Buys, sells, short sells, and covers to be executed at a limit price.
+Implemented logic to allow for after market hours trading - coverting all transactions to pending orders
+to be executed at opening of next trading day.
+Also discussed with team options to allow 'backtracing' - the recovery of orders during times
+when the server is not running. Ultimately fell through due to limited number of API calls.
+    May attempt at the end if there is enough time
+    Basic logic would be using opening and closing prices to determine if an order could execute
+    Need to solve for server shutdown on the day of an order being placed.
+
+Week 8:
+Created 5 tutorials in markdown for Justin to directly implant into the website
+Debugged limit order trading - there was an issue with recursive trades that would drain all balance then crash
+Did majority of documentation/docstrings for entire backend
+Discussed with group during garage session how to modify front end to be more user friendly
+    - more information to be displayed while performing trades (side panels etc.)
+    - trading moved to stock details page
+    - clearer navigation
+Worked with group to prepare demonstration + retrospective
+
+Week 9
+Finished documentation for backend
+Added 2 new tutorials for Leveling up/Experience and Understanding Stock Graphs
+    - the former explains how exp works, and the various unlocks at each level
+    - the latter explains how to interpret the various graphs we provide traders
+Performed alpha testing on our application
+    Found multiple bugs and UX issues across the code base and worked with group members to fix these
+    Includes redesigning the portfolio statistics and dashboard cards being displayed
+Divided roles for the final demonstration, and allocated these to each member
+    Also listed key points for the demonstration and rough time allocations
+Completed all User Manuals for the final submission using Figma
+Proofread final report

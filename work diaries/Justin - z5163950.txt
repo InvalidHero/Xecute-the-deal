@@ -1,0 +1,70 @@
+Week 1
+
+Created a team with George, Even, Ian and Song. Researched the project ideas, and was interested in the investment simulator and the realestate projects. 
+To make a better decision, I researched visualisation libraries for the investment simulator, as that would be a vital part of our solution. 
+I found notable packages, such as react-vis, chartjs and apex, and also ran some experiments with these packages locally.
+
+Week 2
+
+This week we discussed novel features and extensions that would distinguish our group from others doing investment simulator. 
+We were looking at Gamifying the stock trading experience to both engage interested individuals and also create a familiar environment to reduce the percieved high skill barrier for entry.
+I started the User flow diagrams by creating a figma account and project, and shared it with my fellow team members.
+I also bootstrapped our website with basic react features like react-router and material-ui web toolkit, as well as an initial implementation of authentication through firebase, to ascertain whether it was viable for our final product. 
+It was successful and really easy to use. I will do more research to see if it will work with a locally hosted API backend.
+
+Week 3
+
+This week was spent mostly on the wireframes. I worked together with song to create the overall design of the page, and the UI components on each individual page. 
+Next we began creating storyboards which helped to solidify our design of our system and point out noticeable flaws with our user stories and designs. 
+For example, because of our extension to implement short positions, our design for the portfolio page went through many iterations to include features for shorts. 
+Ultimately, we finished the storyboards and help write up the Proposal. 
+
+Week 4
+
+This week I started proper implementation of our website. I worked on fleshing out the Market Page with a flexible grid layout, and implementing the Stock Details page's general layout including a graph
+After implementing the graph, I realised that the lack of a grouping functionality in ApexCharts meant that it did not scale well when graphing anything larger than ~400 data points.
+I instead began looking for another replacement, and did a second round of research into graphs. 
+This time I found react-stockcharts - although it was not maintained for a few years, it was lightyears ahead of many other graphing libraries in terms of displaying stock graphs such as candlesticks, along with blazing performance thanks to a canvas implementation. 
+However, because it was so old, I spent a whole day trying to get it to work (before realising that it can only be implemented as a class component, not as a functional component).
+I properly finished off authentication with a better sign up page with 2 password fields, an Email Verification step after signup and a Properly integrated Forgot Password and Reset Password functionality. 
+I added the Execute the Deal Logo and formalised the dark theme.
+I Reorganised the front end layout or routes so that each class of pages had their own test. 
+Spent a few hours debugging a jest issue to complete tests for StockDetails page.
+Finally, I configured the tests to run before every commit and push. 
+
+Week 5
+
+Implement functional search bar over symbols inside Market page, and Dashboard page UI with mocked data
+Properly connected first few APIs for live data from TwelveData for stocks to the market, portfolio and dashboard pages, and calling /user upon user registration
+Most of this week was used to get the frontend and backend to work together.
+Fixed bug with react-stockcharts for chrome, where scrolling in the graph did not prevent default scroll, added an eventListener on mouseover to disable scroll.
+
+Week 6
+
+Focussed on properly implementing the trade page, with full integration with backend API. 
+This included getting the list of symbols, the latest stock price for selected symbol and getting user portfolio to calculate maximum trade limits (how much the user could buy / sell).
+Also implemented other pages (Watchlist, Portfolio, Orders, Leaderboard, Support, and Profile page with sortable table)
+Implemented UI for achievements page, and a trading hours indicator for market, stock details and trade page
+Implemented Notifications with notistack, for better UI/UX, to show response after interacting with watchlist, portfolio and trades
+Connected previously mocked Dashboard to backend API
+
+Week 7
+
+Fixed trade page with a textfield to populate limit order price.
+Fixed trade page bug with allowing users to trade more than they could own, by calculating estimated stock price more accurately
+Added documentation to a majority of the frontend code with jsdoc and PropTypes
+
+Week 8
+
+Many small visual fixes and bug fixes such as trade's order price not updating correctly and notifications duplicating
+Fixed bug where sometimes authenticated requests are rejected as id token has expired
+Implemented novel feature where live updated data is visually highlighted
+Implemented cumulative graph for dashboard and user page.   
+
+Week 9
+
+Major front end changes were required this week, in an effort to improve frontend user experience and gamification.
+Completely revamped tables to have a more compact layout with up to 3 pieces of data per table cell.
+Fixed a myriad of small and minor bugs everywhere, from an issue with the appbar not working as intended to trade page allowing $0 limit Orders 
+Revamped Dashboard Stat Cards with ColorText and fixed the calculation of statistics.
+Cleaned up all the code for submission.

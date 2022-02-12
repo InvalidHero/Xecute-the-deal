@@ -1,0 +1,104 @@
+Week 1
+- formed group and decided roles and rough technology stack for the project
+- created Jira accounts
+- discussed and decided on candidate projects (InvestmentSimulator and OnlinePropertySales)
+- after further research, we settled on InvestmentSimulator project
+- looked into various sources of API for stock data, and found finnhub.io to be the best
+- plan for next week: to research existing systems to gain ideas for new features, UI and extension
+
+Week 2
+- joined the team on GitHub
+- suggested (and group agreed) to have scrum "meeting" everyday, i.e. everyone posts their answer to three questions: 
+  "what have you done yesterday?", "do you have any blockers?", and "what are you doing today?"
+- researched existing systems, studied about basic stock trading
+- came up with extension ideas: gamifying the app (e.g. achievements, levelling up, and unlocking features as you level up)
+- as a group, we refined and decided on the gamification idea
+- plan for next week: finish user stories, sprint planning, set up a table for weekly retrospectives
+
+Week 3
+- planned last week: finish user stories, sprint planning, set up a table for weekly retrospectives
+- all of the above plans have been completed
+- for user stories, I worked on refining those written by George, added more stories (especially those for extensions)
+and broke apart those that were too big in size
+- I detailed the AC for the user stories, especially the mathematical formulas
+- I got together with my team in my garage, and worked on further refining the proposal (background research, sprint dates
+  user stories, and proofreading other parts done by my group mates)
+- I planned and created the first sprint with Even (Pei Yu)
+- problem 1: there were issues with images in our proposal document becoming pixelated when converted to PDF, we tried
+several options by searching for help online, and we ended up improving the result a little by using Adobe cloud converter
+along with various MS Word settings
+- problem 2: the lecturer disapproved demoing at 5:30am, so we had to search for data source that provides market data for
+stocks that are traded at our demo time. After 4 hours of scavenging for such APIs (and preferably free/cheap), I found
+'twelvedata' (https://twelvedata.com/) that provides ASX market data with 25 USD/month plan. I emailed the customer support
+and managed to get a student discount, down to 20 USD/month.
+- plan for next week: I aim to implement websocket for streaming real-time market data from our backend to the frontend,
+and help Even with setting up a MySQL database
+
+
+Week 4
+- planned last week: implementing websocket for streaming real-time market data, helping Even with setting up a MySQL database
+- after more research into the two things above, there were various changes in the plan
+- we decided not to stream real-time market data from backend to frontend using websockets due to the complexities and issues
+surrounding syncing data across the screen (e.g. there may be values displayed on the client's screen that are computed in the backend 
+based on the real-time market data, and stream only the market data will cause out-of-sync behaviour); although there are solutions
+around it, they seemed too much of an effort at the current stage where we want to see a working soluiton, and so we decided not to
+use websockets for now. Instead, we will be polling every few seconds from the client
+- as for MySQL, we decided to switch to PostgreSQL, as it seemed to follow the SQL standards better and also have useful data types 
+such as arrays; but we still did not get to design nor setup the database together because we both have been busy
+- everyone got too busy for a meeting so I spent some time and tried to delegate tasks to each member, and they accepted the tasks
+- tried to break down user stories to subtasks so that we can work in parallel better and also keep track of our progress better
+- looked into different approximate search algorithms for searching for instruments, and found two useful libraries that we could use,
+one based on Bitap and another based on cosine similarity
+- most of the time this week was spent experimenting and researching on websockets, and not much on actual contribution to the codebase,
+so I plan to make up for this next week
+- plan for next week: setup interval-based polling on React, implement search functionality, help Even with database setup, grabbing data
+from twelvedata in the backend
+ 
+Week 5:
+- planned last week: setup interval-based polling on React, implement search functionality, help Even with database setup, grabbing data
+from twelvedata in the backend
+- all of the above have been successfully achieved, and before the demo on Friday, however, there were some improvements that needed to be made
+- for example, we want to cache API responses from TwelveData in our database so that we can easily connect the data with the rest of the database,
+but also we want to avoid going over the API call limit (i.e. 55 calls per minute)
+- to save development effort, I implemented the stock search functionality using a rather simple algorithm, which essentially displays the stocks
+whos symbol contains the search term
+- technical obstacle 1: it turned out that PostgreSQL was not supported in VLAB so we decided to switch to SQLite, which Even handled mostly of, but using SQLite came at the cost of making it difficult to migrate databases using Alembic (i.e. Alembic can no longer autogenerate correct migration scripts) - so I had to learn how to write alembic code
+- technical obstacle 2: even after we switched to SQLite our dependencies could not be installed on VLAB for some reason, but I was able to fix it by upgrading pip on the system
+- technical obstacle 3: There was an issue with using websockets to acquire real-time data from TwelveData. When I contacted the support from TwelveData, after several hours of back-and-forth communication, we found out that TwelveData had a bug on the server-side. Hence, I had to abandon this approach and build a new system that regularly polls TwelveData every minute.
+- in the sprint that the first demo was due, I pulled off an all nighter to finish off all the features that were not done yet, including: passing market data (price, day gain, historical data) from the server to the client, displaying those data, and initialising user balance upon registration (+ displaying it on the client)
+- for the sprint after the first demo, I populated the sprint with tasks and assigned to the members.
+- I started working on the level up system, and I completed the level up logic, but haven't got around to implement notification system for it yet
+- plan for next week: notification system, achievement system, and possibly creating a full-fledged simulated stock data
+
+Week 6:
+- planned last week: notification system, achievement system, and possibly creating a full-fledged simulated stock data
+- implemented notification system using websockets, which came with additional challenges as dealing with it was very different from REST API.
+- implemented the acheivement system using, and I was able to achieve in a clean way through the use of an event-based architecture
+- simulated stock data was planned last week, but we are almost done with all of the user stories in the backlog, so we won't be running behind schedule, I'll just work on it next week
+- technical obstacle 1: there was an issue with TwelveData, where when we polled for 365days' worth of data, we'd only get 7 or 10 entries. I was able to solve this by simply contacting the customer service
+- technical obstacle 2: the existing trading logic (i.e. executing trades, calculating costs, commission fee, updating db, etc.) were spread across the code base and had lots of redundant code. Hence, I focused most of my development effort this week refactoring the trading logic, which in the end was very beneficial, because it allowed me to get my features done very easily (e.g. granting experience points for trading could be implemented in 1 line).
+- plan for next week: work on simulated stock data, refactor the backend codebase even more, start looking at frontend codebase so that I can start working on prettifying the frontend next next week
+
+Week 7:
+- planned last week: work on simulated stock data, refactor the backend codebase even more, start looking at frontend codebase so that I can start working on prettifying the frontend next next week
+- implemented full fledged stock data whose timeseries data is randomly generated, and I refactored the order domain model (which is a relatively large chunk of code)
+- because refactoring took much longer than I imagined, I did not get around to look at frontend much, but on the other hand, I was able to devise some more ideas about how I want to prettify the frontend, so hopefully there won't be much delay caused by me not being able to complete this task by the end of this week
+- techinical obstacle: refactoring the code for orders was quite challenging, just like last week, but by applying the template pattern and few python tricks, I was able to achieve what I see as quite clean and well-organised code
+- plan for next week: I will be very busy with other subjects, so I won't be able to work on this project much, but I want to finish refactoring the backend codebase completely, and start redesigning frontend UI (i.e. draw sketches)
+
+Week 8:
+- planned last week: finish refactoring the backend codebase completely, and start redesigning frontend UI (i.e. draw sketches)
+- I was able to finish refactoring: all domain models (split user into user and statistic calculation code), all endpoints, all schemas, and all game features
+- technical obstacle: there were issues with some of domain model code raising HTTP400 exceptions intentionally and making the whole server crash, so I introduced what I call "Result" system which makes propagation of success/failure through the codebase and logging them easy.
+- I realised I also need to add in more achievements so I decided to work on that too, and managed to come up with a variety
+- I made a start on redesigning frontend UI, I drew up some sketches and shared them with my team. However, many of the designs were shot down because they were too ambitious, which I agree with, especially because we spent the whole day trying to figure out how to draw a side panel on the website.
+- To account for difficulties with frontend development, we decided to develop incrementally so we can merge visible progress into master steadily.
+- plan for next week: I will finish off redesigning the frontend UI (i.e. adding a helpful sidepanel on all pages)
+
+Week 9: 
+- planned last week: finish off redesigning the frontend UI
+- I have finished redesigning the frontend UI, by adding helpful side panel with various tabs for e.g. portfolio, general user information, orders, transactions history etc.
+- I also helped prettify rest of the frontend and fix bugs that existed in both the front- and back- ends
+- To minimise the number of API calls that the frontend needs to make, and also to improve data consistency on the webpage, I converted parts of the frontend using Redux statemanagement library and I made a master API endpoint that returns aggregation of responses from existing various endpoints.
+- WE ARE DONE :)
+- plan for next week: demo!
